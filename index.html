@@ -100,13 +100,18 @@
     const minigalary = document.querySelectorAll('nav ul li');
     const title = document.querySelectorAll('.message-title');
     let no = 0;
+    let cnt = 0;
+
 
     console.log(title);
 
     // nextボタン
     next.addEventListener('click', () => {
+      galary[no].classList.remove('slideL');
+      galary[no].classList.remove('slideR');
       galary[no].classList.remove('fadeIn');
       galary[no].classList.add('fadeOut');
+
 
       galary.forEach(reset => {
         reset.style.opacity = 0;
@@ -117,12 +122,15 @@
       }
       console.log(no);
       galary[no].style.opacity = 1;
+      galary[no].classList.remove('slideR');
       galary[no].classList.add('fadeIn');
       galary[no].classList.remove('fadeOut');
     });
 
     // prevボタン
     prev.addEventListener('click', () => {
+      galary[no].classList.remove('slideL');
+      galary[no].classList.remove('slideR');
       galary[no].classList.remove('fadeIn');
       galary[no].classList.add('fadeOut');
 
@@ -130,11 +138,13 @@
         reset.style.opacity = 0;
       });
       no--;
+
       if (no < 0) {
         no = 4;
       }
       console.log(no);
       galary[no].style.opacity = 1;
+      galary[no].classList.remove('slideR');
       galary[no].classList.add('fadeIn');
       galary[no].classList.remove('fadeOut');
     });
@@ -142,18 +152,21 @@
     // ミニギャラリークリック
     minigalary.forEach(btn => {
       btn.addEventListener('click', () => {
+        galary[no].classList.remove('fadeOut');
         galary[no].classList.remove('fadeIn');
-        galary[no].classList.add('fadeOut');
+        galary[no].classList.remove('slideL');
+        galary[no].classList.add('slideR');
 
         let index = Array.from(minigalary).indexOf(btn);
         no = index;
+        galary[no].classList.remove('fadeOut');
         galary.forEach(reset => {
           reset.style.opacity = 0;
         });
         console.log(no);
         galary[no].style.opacity = 1;
-        galary[no].classList.add('fadeIn');
-        galary[no].classList.remove('fadeOut');
+        galary[no].classList.add('slideL');
+        galary[no].classList.remove('slideR');
       });
     });
 
